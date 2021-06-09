@@ -1,0 +1,30 @@
+<!-- <li *ngFor="let obj of usuariosData">{{obj | json}}</li> -->
+<mat-form-field>
+  <mat-label>Nombre</mat-label>
+  <input matInput type="text" [formControl]="nombre" />
+  <button mat-button *ngIf="nombre" matSuffix mat-icon-button aria-label="Clear"></button>
+</mat-form-field>
+<!-- {{ nombre.value }} -->
+<mat-card-actions align="center">
+  <button mat-raised-button color="primary" type="submit" (click)="consultar()" id="botonConsultar">
+    <mat-icon>search</mat-icon>Consultar
+  </button>
+  <button mat-raised-button color="primary" type="submit" (click)="limpiar()" id="botonLimpiar">
+    <mat-icon>delete_sweep</mat-icon>Limpiar
+  </button>
+</mat-card-actions>
+<div mat-dialog-content>
+  <div>
+    <ngx-datatable
+      [rows]="usuariosData"
+      class="material"
+      [columnMode]="ColumnMode.force"
+      [messages]="{ emptyMessage: 'No hay información para mostrar', totalMessage: 'total' }"
+    >
+      <ngx-datatable-column prop="usuario_ACTIVO" name="ACTIVO"></ngx-datatable-column>
+      <ngx-datatable-column prop="usuario_ID" name="ID"></ngx-datatable-column>
+      <ngx-datatable-column prop="usuario_NOMBRE" name="NOMBRE"></ngx-datatable-column>
+      <ngx-datatable-column prop="usuario_ROL" name="ROL"></ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>
